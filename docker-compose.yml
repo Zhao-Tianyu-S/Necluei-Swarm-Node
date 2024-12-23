@@ -1,17 +1,6 @@
 version: "3.9"
 
 services:
-  py38:
-    container_name: swarmnode-py38
-    build:
-      dockerfile: Dockerfile
-      target: py38
-    volumes:
-      - .:/repository/
-    environment:
-      - SWARMNODE_API_KEY=
-      - SWARMNODE_API_BASE=
-
   py39:
     container_name: swarmnode-py39
     build:

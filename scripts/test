@@ -8,7 +8,6 @@
 # (each api key must belong to a different user). In this case, just copy and paste
 # the following commands into separate terminals, instead of running this script.
 
-docker exec swarmnode-py38 pytest -s -x tests
 docker exec swarmnode-py39 pytest -s -x tests
 docker exec swarmnode-py310 pytest -s -x tests
 docker exec swarmnode-py311 pytest -s -x tests

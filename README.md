@@ -31,10 +31,11 @@ swarmnode.api_key = "YOUR_API_KEY"
 
 agent = swarmnode.Agent.create(
     name="My Agent",
-    script="def main(request):\n    return request.payload",
+    script="def main(request, store):\n    return request.payload",
     requirements="requests==2.31.0\npandas==2.1.4",
     env_vars="FOO=bar\nBAZ=qux",
     python_version="3.11",
+    store_id="b553e996-6556-42dd-8990-ddb7ef2142f6",
 )
 ```
 

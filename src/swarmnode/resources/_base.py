@@ -6,5 +6,4 @@ from dataclasses import dataclass
 class Resource(ABC):
     @classmethod
     @abstractmethod
-    def api_source(cls) -> str:
-        ...
+    def api_source(cls) -> str: ...

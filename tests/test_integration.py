@@ -57,6 +57,7 @@ def test_agent(prepare_and_teardown):
         requirements="requests",
         env_vars="FOO=BAR",
         python_version="3.9",
+        store_id=data["store_id"],
     )
     assert swarmnode.Agent.update(agent.id, name="updated").name == "updated"
     assert swarmnode.Agent.list().total_count == 2
@@ -75,3 +76,12 @@ def test_execute_agent(prepare_and_teardown):
 
     agent_executor_job = agent.execute(wait=False)
     assert type(agent_executor_job) is swarmnode.AgentExecutorJob
+
+
+def test_store():
+    store = swarmnode.Store.create("test")
+    assert swarmnode.Store.update(store.id, name="updated").name == "updated"
+    assert swarmnode.Store.list().total_count == 2
+    assert swarmnode.Store.retrieve(store.id).id == store.id
+    swarmnode.Store.delete(store.id)
+    assert swarmnode.Store.list().total_count == 1

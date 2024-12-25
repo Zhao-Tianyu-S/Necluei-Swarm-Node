@@ -19,6 +19,7 @@ class Agent(Resource):
     requirements: str
     env_vars: str
     python_version: Literal["3.9", "3.10", "3.11", "3.12"]
+    store_id: str
     created: str
     modified: str
 
@@ -50,6 +51,7 @@ class Agent(Resource):
         name: str,
         script: str,
         python_version: Literal["3.9", "3.10", "3.11", "3.12"],
+        store_id: str,
         requirements: str = "",
         env_vars: str = "",
     ) -> "Agent":
@@ -62,6 +64,7 @@ class Agent(Resource):
                 "requirements": requirements,
                 "env_vars": env_vars,
                 "python_version": python_version,
+                "store_id": store_id,
             },
         )
         return cls(**r.json())
@@ -70,7 +73,7 @@ class Agent(Resource):
     def update(cls, id: str, **kwargs) -> "Agent":
         """
         The following fields can be updated: `name`, `script`, `requirements`,
-        `env_vars`, `python_version`.
+        `env_vars`, `python_version`, `store_id`.
         """
 
         r = Client.request_action(

@@ -11,6 +11,7 @@ def teardown():
     # AgentExecutorJob, Execution. So we just have to delete
     # all the agents and the rest will be deleted automatically.
     _delete_all_agents()
+    _delete_all_stores()
 
 
 def prepare() -> Dict:
@@ -22,10 +23,19 @@ def prepare() -> Dict:
     instead of once as it should. So, it got renamed to `prepare`.
     """
 
+    # This may seem weird here, but when tests are run for the very first time
+    # against an user's account, we want to delete the default store. This is
+    # so that we start with a clean slate and end with a clean slate every time
+    # we run the tests.
+    _delete_all_stores()
+
+    store = swarmnode.Store.create("teststore")
+
     agent = swarmnode.Agent.create(
         name="testagent",
         script="def main():\n    print('hello world')\n",
         python_version="3.9",
+        store_id=store.id,
     )
 
     agent_builder_job = swarmnode.AgentBuilderJob.list(agent_id=agent.id).results[0]
@@ -45,6 +55,7 @@ def prepare() -> Dict:
     execution = agent.execute()
 
     return {
+        "store_id": store.id,
         "agent_id": agent.id,
         "agent_builder_job_id": agent_builder_job.id,
         "build_id": build_id,
@@ -83,3 +94,8 @@ def _get_every_page_paginated_resource(resource_class: type) -> List[object]:
 def _delete_all_agents():
     for agent in _get_every_page_paginated_resource(swarmnode.Agent):
         swarmnode.Agent.delete(agent.id)
+
+
+def _delete_all_stores():
+    for store in _get_every_page_paginated_resource(swarmnode.Store):
+        swarmnode.Store.delete(store.id)

@@ -12,6 +12,7 @@ class Execution(Resource):
     id: str
     agent_id: str
     agent_executor_job_id: Optional[str]
+    agent_executor_cron_job_id: Optional[str]
     status: Literal["success", "in_progress", "failure", "termination"]
     start: str
     finish: Optional[str]
@@ -27,12 +28,15 @@ class Execution(Resource):
         cls,
         agent_id: Optional[str] = None,
         agent_executor_job_id: Optional[str] = None,
+        agent_executor_cron_job_id: Optional[str] = None,
     ) -> CursorPaginatedResource["Execution"]:
         params = {}
         if agent_id is not None:
             params["agent_id"] = agent_id
         if agent_executor_job_id is not None:
             params["agent_executor_job_id"] = agent_executor_job_id
+        if agent_executor_cron_job_id is not None:
+            params["agent_executor_cron_job_id"] = agent_executor_cron_job_id
         r = Client.request_action("GET", f"{cls.api_source()}/", params=params)
         return CursorPaginatedResource(
             _next_url=r.json()["next"],

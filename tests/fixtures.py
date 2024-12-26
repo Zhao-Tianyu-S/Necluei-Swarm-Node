@@ -8,7 +8,7 @@ import swarmnode
 
 def teardown():
     # When an Agent is deleted, the following cascade: AgentBuilderJob, Build,
-    # AgentExecutorJob, Execution. So we just have to delete
+    # AgentExecutorJob, AgentExecutorCronJob, Execution. So we just have to delete
     # all the agents and the rest will be deleted automatically.
     _delete_all_agents()
     _delete_all_stores()

@@ -78,6 +78,27 @@ def test_execute_agent(prepare_and_teardown):
     assert type(agent_executor_job) is swarmnode.AgentExecutorJob
 
 
+def test_agent_executor_cron_job(prepare_and_teardown):
+    data = prepare_and_teardown
+
+    cron_job = swarmnode.AgentExecutorCronJob.create(
+        agent_id=data["agent_id"], name="test", expression="* * * * *"
+    )
+    assert cron_job.status == "running"
+    assert (
+        swarmnode.AgentExecutorCronJob.update(cron_job.id, status="suspended").status
+        == "suspended"
+    )
+    assert (
+        swarmnode.AgentExecutorCronJob.list(agent_id=data["agent_id"]).total_count == 1
+    )
+    assert swarmnode.AgentExecutorCronJob.retrieve(cron_job.id).id == cron_job.id
+    swarmnode.AgentExecutorCronJob.delete(cron_job.id)
+    assert (
+        swarmnode.AgentExecutorCronJob.list(agent_id=data["agent_id"]).total_count == 0
+    )
+
+
 def test_store():
     store = swarmnode.Store.create("test")
     assert swarmnode.Store.update(store.id, name="updated").name == "updated"

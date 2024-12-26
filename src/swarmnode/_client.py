@@ -54,3 +54,12 @@ class Client:
         url = f"wss://{swarmnode.api_base}/ws/v1/execution/{address}/"
         async with websockets.connect(url, extra_headers=headers) as ws:
             return await ws.recv()
+
+    @classmethod
+    async def listen_to_execution_stream(cls, address: str) -> AsyncGenerator:
+        headers = cls._get_ws_headers()
+        url = f"wss://{swarmnode.api_base}/ws/v1/execution-stream/{address}/"
+        async with websockets.connect(url, extra_headers=headers) as ws:
+            while True:
+                message = await ws.recv()
+                yield message

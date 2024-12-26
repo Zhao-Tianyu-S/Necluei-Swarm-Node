@@ -51,4 +51,32 @@ agent = swarmnode.Agent.retrieve(id="15d19ca3-26f1-4adb-9cea-3955b73d9b4e")
 execution = agent.execute(payload={"key": "value"})
 ```
 
+### Create a Cron Job
+
+```python
+import swarmnode
+
+swarmnode.api_key = "YOUR_API_KEY"
+
+cron_job = swarmnode.AgentExecutorCronJob.create(
+    agent_id="15d19ca3-26f1-4adb-9cea-3955b73d9b4e",
+    name="My cron job",
+    expression="* * * * *",
+)
+```
+
+### Stream Executions from a Cron Job
+
+```python
+import swarmnode
+
+swarmnode.api_key = "YOUR_API_KEY"
+
+cron_job = swarmnode.AgentExecutorCronJob.retrieve(id="f3384d13-7a32-4abe-9c10-964ca17413b7")
+
+for execution in cron_job.stream():
+    # Every time a new execution is created, it will be printed.
+    print(execution)
+```
+
 These are only a few examples of what you can do with the SDK. Refer to the [full documentation](https://swarmnode.ai/docs/sdk/introduction) to learn more about the SDK.

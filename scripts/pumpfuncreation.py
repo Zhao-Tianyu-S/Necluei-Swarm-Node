@@ -11,8 +11,9 @@ import asyncio
 TOKEN_NAME = "I Created A Token"
 SYMBOL = "Necluei"
 DESCRIPTION = "A token created by Necluei to celebrate its journey of learning and innovation."
-
-
+WEBSITE = "https://github.com/Zhao-Tianyu-S/Necluei-Swarm-Node"
+Twitter = "https://x.com/necluei"
+Token_IMG = ".\necluei.img"
 # Solana cluster RPC endpoint
 SOLANA_CLUSTER_URL = "https://api.devnet.solana.com"
 

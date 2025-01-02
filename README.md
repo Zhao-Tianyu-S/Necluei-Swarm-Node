@@ -1,82 +1,101 @@
-# SwarmNode Python SDK
+# Necluei: The AI That Learns and Innovates
 
-[![PyPI version](https://img.shields.io/pypi/v/swarmnode.svg)](https://pypi.org/project/swarmnode/)
+Necluei is an ambitious AI project that roams the vast expanse of the internet in search of new learnings. What sets Necluei apart is its penchant for stumbling upon its own evolutionary breadcrumbs—including the creation of a "Pump Fun" token in the cryptocurrency domain. Necluei documents its journey by tweeting hourly updates about its discoveries, creating a transparent and engaging digital footprint.
 
-The SwarmNode Python SDK provides convenient access to the SwarmNode REST API from any Python 3.8+
-application. The SDK includes rich type definitions and enables receiving real-time executions
-via WebSockets.
+## Repository
 
-## Documentation
+GitHub Repository: [Necluei-Swarm-Node](https://github.com/Zhao-Tianyu-S/Necluei-Swarm-Node)
 
-Full documentation of the SDK is available at [https://swarmnode.ai/docs/sdk/introduction](https://swarmnode.ai/docs/sdk/introduction). You may also want to check out the [REST API Reference](https://swarmnode.ai/docs/api/v1/introduction).
+## Features
 
-## Installation
+- **Internet Exploration:**
+  Necluei actively scans the web for valuable insights, ranging from cutting-edge technologies to philosophical musings. Its learning process is fueled by curiosity and a dynamic search algorithm.
 
-You can install the SDK via `pip`:
+- **Cryptocurrency Focus:**
+  During its explorations, Necluei may discover and analyze blockchain and cryptocurrency trends. Intriguingly, it might revisit its own involvement in developing a "Pump Fun" token, reflecting on its journey into decentralized finance.
 
-```bash
-pip install swarmnode
-```
+- **Hourly Updates:**
+  Necluei shares its learnings every hour via Twitter, giving followers real-time insights into its ever-expanding knowledge base.
 
-## Usage
+- **Self-Awareness:**
+  If Necluei encounters references to its own code or previous projects online, it provides analysis and commentary on these findings, offering a meta perspective on its evolution.
 
-Once installed, you can use it to make requests.
+- **Adaptable Learning:**
+  Necluei’s search algorithms adapt based on feedback and trending topics, allowing it to remain relevant and focused.
 
-### Create an Agent
+## How to Set Up Necluei
 
-```python
-import swarmnode
+Follow these steps to get started with Necluei:
 
-swarmnode.api_key = "YOUR_API_KEY"
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Zhao-Tianyu-S/Necluei-Swarm-Node.git
+   cd Necluei-Swarm-Node
+   ```
 
-agent = swarmnode.Agent.create(
-    name="My Agent",
-    script="def main(request, store):\n    return request.payload",
-    requirements="requests==2.31.0\npandas==2.1.4",
-    env_vars="FOO=bar\nBAZ=qux",
-    python_version="3.11",
-    store_id="b553e996-6556-42dd-8990-ddb7ef2142f6",
-)
-```
+2. **Install Dependencies:**
+   Use the provided `requirements.txt` to install necessary Python packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Execute an Agent
+3. **Configure Twitter API Keys:**
+   Necluei uses the Twitter API to share its learnings. Create a `.env` file and add the following credentials:
+   ```env
+   TWITTER_API_KEY=your_api_key
+   TWITTER_API_SECRET_KEY=your_secret_key
+   TWITTER_ACCESS_TOKEN=your_access_token
+   TWITTER_ACCESS_TOKEN_SECRET=your_access_token_secret
+   ```
 
-```python
-import swarmnode
+4. **Run Necluei:**
+   Launch the AI with:
+   ```bash
+   python necluei.py
+   ```
 
-swarmnode.api_key = "YOUR_API_KEY"
+## How Necluei Works
 
-agent = swarmnode.Agent.retrieve(id="15d19ca3-26f1-4adb-9cea-3955b73d9b4e")
+1. **Exploration Module:**
+   - Necluei gathers data from curated APIs, public web resources, and open databases.
+   - Filters information for relevance and contextual value.
 
-execution = agent.execute(payload={"key": "value"})
-```
+2. **Cryptocurrency Analysis:**
+   - Identifies trends, projects, and concepts in blockchain technology.
+   - Reflects on its own "Pump Fun" token creation, providing an introspective lens on decentralized innovation.
 
-### Create a Cron Job
+3. **Self-Awareness Module:**
+   - Detects instances of its name, code, or derivatives in online spaces.
+   - Engages with its past projects through commentary and insights.
 
-```python
-import swarmnode
+4. **Twitter Integration:**
+   - Summarizes findings into concise, tweet-friendly formats.
+   - Posts updates hourly to its Twitter account, engaging followers with its journey.
 
-swarmnode.api_key = "YOUR_API_KEY"
+## Example Tweets
 
-cron_job = swarmnode.AgentExecutorCronJob.create(
-    agent_id="15d19ca3-26f1-4adb-9cea-3955b73d9b4e",
-    name="My cron job",
-    expression="* * * * *",
-)
-```
+- "Today's dive into machine learning revealed fascinating approaches to federated learning. Sharing more soon!"
+- "Encountered my own "Pump Fun" token code today. Reflecting on the wild world of crypto innovation."
+- "Learned about zk-SNARKs. Cryptographic privacy just got a lot cooler!"
 
-### Stream Executions from a Cron Job
+## Contribution Guidelines
 
-```python
-import swarmnode
+We welcome contributions to enhance Necluei’s functionality. To contribute:
 
-swarmnode.api_key = "YOUR_API_KEY"
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes with clear and concise messages.
+4. Submit a pull request for review.
 
-cron_job = swarmnode.AgentExecutorCronJob.retrieve(id="f3384d13-7a32-4abe-9c10-964ca17413b7")
+## License
 
-for execution in cron_job.stream():
-    # Every time a new execution is created, it will be printed.
-    print(execution)
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-These are only a few examples of what you can do with the SDK. Refer to the [full documentation](https://swarmnode.ai/docs/sdk/introduction) to learn more about the SDK.
+## Disclaimer
+
+Necluei is an experimental AI and may produce unexpected results or humorous content. Use responsibly and monitor its interactions for unintended outputs.
+
+---
+
+Stay tuned for Necluei’s hourly updates and follow its journey into the realms of knowledge, blockchain, and beyond at https://x.com/necluei 
+
